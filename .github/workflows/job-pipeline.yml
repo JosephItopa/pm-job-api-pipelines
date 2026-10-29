@@ -2,8 +2,8 @@ name: Job Ingestion Pipeline
 
 on:
   schedule:
-    # GitHub Actions cron runs in UTC: 06:00 and 18:00 every day.
-    - cron: "0 17 * * 0"
+    # GitHub Actions cron runs in UTC: once every week.
+    - cron: "0 0 * * 0"
   workflow_dispatch:
 
 permissions:
@@ -35,11 +35,9 @@ jobs:
       - name: Run ingestion pipeline
         env:
           JSEARCH_API_KEY: ${{ secrets.JSEARCH_API_KEY }}
-          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
-          MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
-          MYSQL_USER: ${{ secrets.MYSQL_USER }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+          MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
           MAX_PAGES_PER_QUERY: ${{ secrets.MAX_PAGES_PER_QUERY }}
           REQUEST_DELAY_SECONDS: ${{ secrets.REQUEST_DELAY_SECONDS }}
-        run: python app.py
+        run: python healthcare_job_ingestion_mongodb.py

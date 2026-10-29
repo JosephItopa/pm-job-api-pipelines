@@ -40,6 +40,6 @@ jobs:
           MYSQL_USER: ${{ secrets.MYSQL_USER }}
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          MAX_PAGES_PER_QUERY: "1"
-          REQUEST_DELAY_SECONDS: "1"
+          MAX_PAGES_PER_QUERY: ${{ secrets.MAX_PAGES_PER_QUERY }}
+          REQUEST_DELAY_SECONDS: ${{ secrets.REQUEST_DELAY_SECONDS }}
         run: python app.py

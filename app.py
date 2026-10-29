@@ -32,6 +32,8 @@ ROLES = (
 LOCATIONS = (
     ("Abuja", "Nigeria"),
     ("Lagos", "Nigeria"),
+    ("Enugu", "Nigeria"),
+    ("Kano", "Nigeria"),
     ("Nairobi", "Kenya"),
     ("Cairo", "Egypt"),
     ("Johannesburg", "South Africa"),
@@ -376,7 +378,7 @@ def connect_db() -> pymysql.connections.Connection:
             charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor,
             autocommit=False,
-            connect_timeout=15,
+            connect_timeout=30,
         )
 
     try:
